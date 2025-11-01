@@ -1,0 +1,51 @@
+﻿Instrucciones de instalación
+Controlador JDBC de Microsoft SQL Server versión 2.0
+Marzo 2009
+
+
+INTRODUCCIÓN
+------------
+A continuación se incluyen las instrucciones para desempaquetar
+sqljdbc_<versión>_enu.exe y sqljdbc_<versión>_enu.tar.gz.
+
+
+WINDOWS
+-------
+1. Lea el archivo license.txt. La descarga y el uso del controlador JDBC de
+   Microsoft SQL Server implica la aceptación de esta licencia.
+
+2. Descargue sqljdbc_<versión>_enu.exe en un directorio temporal.
+
+3. Ejecute sqljdbc_<versión>_enu.exe
+
+4. Escriba el directorio de instalación cuando se le solicite; se recomienda
+   desempaquetar este archivo zip en %ProgramFiles% en el directorio
+   predeterminado:
+
+	Controlador JDBC de Microsoft SQL Server
+
+5. Una vez desempaquetado el paquete, abra el sistema de ayuda de JDBC; para
+   ello, abra %InstallationDirectory%\Microsoft SQL Server JDBC  Driver\sqljdbc_<versión>\<idioma>\help\default.htm.
+ El sistema de ayuda se mostrará en el explorador web.
+
+
+UNIX
+----
+1. Lea el archivo license.txt. La descarga y el uso del controlador JDBC
+   de Microsoft SQL Server implica la aceptación de esta licencia.
+
+2. Descargue sqljdbc_<versión>_enu.tar.gz en un directorio temporal.
+
+3. Para desempaquetar el archivo tar comprimido, navegue hasta el directorio
+   en que desea desempaquetar el controlador y escriba:
+
+	gzip -d sqljdbc_<versión>_enu.tar.gz
+
+4. Para desempaquetar el archivo tar, muévalo hasta el directorio en que desea
+   instalar el controlador y escriba:
+
+	tar -xf sqljdbc_<versión>_enu.tar
+
+5. Una vez desempaquetado el paquete, abra el sistema de ayuda de JDBC;
+   para ello, abra %InstallationDirectory%/Microsoft SQL Server JDBC Driver/sqljdbc_<versión>/<idioma>/help/default.htm.
+   El sistema de ayuda se mostrará en el explorador web predeterminado.

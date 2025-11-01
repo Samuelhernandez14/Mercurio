@@ -1,0 +1,295 @@
+Información de la versión
+Controlador JDBC de Microsoft SQL Server versión 2.0
+Marzo 2009
+
+
+INTRODUCCIÓN
+------------
+Este archivo contiene información de última hora u otra información importante
+que complementa la documentación del controlador JDBC de Microsoft SQL Server.
+Debe leer este archivo en su totalidad antes de instalar el controlador JDBC.
+
+Sus comentarios son muy importantes y haremos lo posible para responderle
+puntualmente. Si desea obtener información sobre cómo hacer llegar sus
+comentarios mediante el grupo de noticias y los foros de Internet del
+controlador JDBC, visite la página del controlador JDBC de Microsoft SQL
+Server en http://msdn.microsoft.com/data/jdbc.
+
+
+INSTALACIÓN
+------------
+Las instrucciones para instalar el controlador JDBC se encuentran en
+install.txt.
+Consulte este archivo si desea obtener información sobre cómo instalar el
+controlador en los sistemas operativos Windows y Unix.
+
+SISTEMAS OPERATIVOS ADMITIDOS
+---------------------------
+La versión 2.0 del controlador JDBC de Microsoft SQL Server es compatible con
+los siguientes sistemas operativos: Linux, Solaris, Unix, Windows XP Service
+Pack 3, Windows Server 2003 Service Pack 2, Windows Vista SP1 y Windows Server
+ 2008.
+
+Tenga en cuenta que el controlador ya no es compatible con Windows 2000.
+
+CONTENIDO DE LA VERSIÓN
+----------------
+El archivo zip o tar ejecutable del controlador JDBC de Microsoft SQL Server
+desempaqueta los siguientes archivos en las ubicaciones especificadas,
+relativas al directorio de instalación:
+
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\install.txt
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\release.txt
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\license.txt
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\sqljdbc.jar
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\sqljdbc4.jar
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\auth\x86\sqljdbc_auth.dll
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\auth\x64\sqljdbc_auth.dll
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\auth\ia64\sqljdbc_auth.dll
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\default.htm
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\index.htm
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\toc.htm
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\html\<páginas de doc...>
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\local\<archivos de doc...>
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\help\samples\<archivos de ejemplo...>
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\xa\xa_install.sql
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\xa\x86\sqljdbc_xa.dll
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\xa\x64\sqljdbc_xa.dll
+<directorio de instalación>\sqljdbc_<versión>\<idioma>\xa\ia64\sqljdbc_xa.dll
+
+
+LISTA DE CAMBIOS
+-----------
+A continuación se ofrece una lista de los cambios realizados en el controlador
+JDBC de Microsoft SQL Server desde que se lanzó la versión 1.2 en octubre de
+2007.
+
+157330 El controlador ya no elimina el número incorrecto de registros de una
+       tabla cuando la instrucción anterior limita el número de filas.
+
+169210 La cancelación de instrucciones ahora deja siempre la conexión en un
+       estado utilizable.
+
+182375 El controlador ahora asegura que la clase
+       com.microsoft.sqlserver.jdbc.SQLServerException es completamente serializable.
+
+194672 El controlador ahora se vuelve a conectar a Microsoft DTC (Coordinador
+       de transacciones distribuidas) después de reiniciar el servicio MSDTC.
+
+201162 El controlador ya no inicia una excepción "Invalid TDS" cuando la
+       aplicación establece la propiedad de cadena de conexión "selectMethod=cursor"
+       y ejecuta un procedimiento almacenado que devuelve varios conjuntos de
+       resultados vacíos consecutivos.
+
+208164 Si se ejecuta el controlador JDBC en la plataforma IBM AIX ya no tiene
+       un efecto negativo en el rendimiento.
+
+129889 El método SQLServerResultSetMetadata.getTableName ahora devuelve
+       correctamente el nombre de la tabla.
+
+230786 Si se llama al método java.util.logging.Logger.getLogger(), éste ya no
+       es susceptible de una contención de subprocesos.
+
+251278 Las conexiones ya no se quedan en los estados de conexión FIN_WAIT_2 o
+       CLOSE_WAIT TCP cuando la conexión se cierra. 
+
+256392 El controlador ya no pudo conectarse a un asociado de reflejo de la base
+       de datos de instancia con nombre.
+
+36582 El archivo MANIFEST.MF, que se encuentra en el directorio META-INF/ en
+      sqljdbc.jar o sqljdb4.jar, está ahora en letras mayúsculas.
+
+
+PROBLEMAS CONOCIDOS
+------------
+A continuación, se describen los problemas conocidos del controlador JDBC de
+Microsoft SQL Server:
+
+
+1) CONFLICTO DE CARGA DEL CONTROLADOR CON EL CONTROLADOR JDBC DE SQL SERVER 2000
+
+Si carga el controlador JDBC de Microsoft SQL Server 2000 y el controlador JDBC
+de Microsoft SQL Server (versiones 1.0, 1.1, 1.2 y 2.0) en el mismo proceso,
+en algunos casos la versión 2000 del controlador JDBC acepta de forma
+incorrecta una llamada al método DriverManager.getConnection destinada al
+controlador JDBC de Microsoft SQL Server (versiones 1.0, 1.1, 1.2 y 2.0).
+
+Este problema tiene su origen en la aceptación incorrecta por parte de la
+versión 2000 del controlador JDBC del prefijo URL "jdbc:sqlserver://" si se
+carga en primer lugar.
+
+Para evitar este problema, cargue primero la clase del controlador de Microsoft
+SQL Server (versiones 1.0, 1.1, 1.2 y 2.0) del modo siguiente:
+
+Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); // versión 1.0 o
+posterior
+Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver"); // versión 2000
+
+De este modo, se asegura de que el prefijo URL "jdbc:sqlserver://" es
+controlado por el controlador JDBC de Microsoft SQL Server (versiones 1.0,
+1.1, 1.2 y 2.0) y que el prefijo URL "jdbc:microsoft:sqlserver://" es
+controlado por la versión 2000 del controlador JDBC.
+
+
+2) LIMITACIONES PARA LA OBTENCIÓN DE METADATOS DE PARÁMETROS PARA INSTRUCCIONES
+ PREPARADAS
+
+Existen algunas limitaciones al utilizar la clase SQLServerParameterMetaData
+con instrucciones preparadas. Las instrucciones SQL INSERT requieren la
+cláusula INTO opcional y las instrucciones SQL DELETE requieren la cláusula
+FROM opcional para obtener los metadatos de parámetros correctamente.
+
+
+3) LIMITACIONES DE LA CONVERSIÓN DE DATOS DE SQL SERVER 2000
+
+Al utilizar SQL Server 2000 con el controlador JDBC, se aplican las siguientes
+limitaciones de conversión de datos:
+
+	- Los datos de cadena no se pueden convertir a una columna money o
+          smallmoney subyacente.
+	- Los datos de cadena con más de 4000 caracteres se pueden convertir en
+          las columnas char o varchar subyacentes si la propiedad de cadena
+          de conexión sendStringParametersAsUnicode está establecida en false.
+
+
+4) LIMITACIONES CON PARÁMETROS CON NOMBRE
+
+Los parámetros con nombre no son compatibles con los procedimientos almacenados
+cuyo nombre contiene un corchete de apertura "[". Por ejemplo, un nombre como
+"stor[edProc".
+Tenga en cuenta que esto no afecta al escape normal de los nombres de
+procedimiento almacenado mediante el uso de "[]".
+
+
+5) ERROR DE TRANSACCIÓN XA EN WINDOWS XP
+
+Las transacciones XA no funcionan si SQL Server se ejecuta en Windows XP a
+menos que se aplique la siguiente revisión:
+
+http://support.microsoft.com/kb/922668
+
+Tenga en cuenta que este problema únicamente se produce si el servidor SQL
+Server que participa en la transacción XA se ejecuta en Windows XP. Las
+aplicaciones cliente que se ejecutan en Windows XP y se conectan a un servidor
+SQL Server remoto que no se ejecuta en Windows XP pueden participar en las
+transacciones XA. Este problema no se produce en Windows Server 2003.
+
+
+6) SUN SOLARIS NECESITA GZIP PARA INSTALAR EL CONTROLADOR JDBC
+
+Al instalar el controlador JDBC en un equipo con Sun Solaris, puede que
+necesite instalar primero GZIP para descomprimir los archivos del controlador.
+GZIP se puede descargar desde www.gzip.org.
+
+
+7) CONVERSIÓN DE VALORES BIGDECIMAL
+
+Al convertir valores BigDecimal en una representación de cadena, la conversión
+de dichos valores depende de la versión de JVM utilizada.
+
+Por ejemplo, el siguiente código muestra estas diferencias:
+
+String str = new BigDecimal("1E10").toString();
+System.out.println("La cadena es " + str);
+//con JVM 1.4 imprime "La cadena es 10000000000"
+//con JVM 1.5 imprime "La cadena es 1E+10"
+
+Para lograr un comportamiento coherente al utilizar valores BigDecimal, la
+aplicación debe utilizar el método BigDecimal.toPlainString al ejecutarse en
+JVM 1.5.
+
+
+8) LA CONEXIÓN DE JDBC CON IPV6 SE COMPORTA DE FORMA INCOHERENTE AL UTILIZAR LA
+   SEGURIDAD INTEGRADA
+
+Al utilizar una dirección IPV6 numérica con seguridad integrada, la conexión
+puede tardar más en establecerse o incluso generar un error. Las conexiones
+con seguridad integrada con un servidor IPV6 funcionan siempre y cuando se
+utilice el nombre del equipo.
+
+
+9) VALOR DE LÍMITE ELEVADO PARA Reader.mark(readAheadLimit) EN EL MODO ADAPTABLE
+
+En el modo adaptable, si la aplicación utiliza el método
+java.io.Reader.mark(readAheadLimit) para marcar la posición en una secuencia
+devuelta por los métodos de captador, es posible que se produzca un
+OutOfMemoryError. Este error puede tener lugar cuando readAheadLimit tiene un
+valor muy grande, como Integer.MAX_VALUE. 
+
+Para evitar este problema, establezca readAheadLimit en un valor más pequeño.
+
+
+10) ERROR DE CONVERSIÓN DE TIPO DE DATOS EN EL MODO ADAPTABLE
+
+En el modo adaptable, es posible que se produzca un OutOfMemoryError al
+utilizar los métodos getCharacterStream o getAsciiStream para recuperar
+columnas ResultSet con valores de caracteres o parámetros OUT de
+CallableStatement. Este error se produce cuando es necesaria una conversión de
+tipo de datos para el valor. Por ejemplo, si se recupera un tipo de datos de
+columna ntext con el método getAsciiStream o un tipo de datos de columna
+varchar(max) con el método getCharacterStream, será necesaria una conversión
+de tipo de datos.
+
+Para solucionar este problema, utilice el método de captador de secuencias
+adecuado para ese tipo de datos.
+
+
+11) EVITE CREAR TABLAS TEMPORALES MEDIANTE LAS CLASES PreparedStatement o
+    CallableStatement
+
+Si la aplicación crea tablas temporales mediante PreparedStatement o
+CallableStatement al ejecutar una consulta, estas tablas temporales pueden
+quitarse después de que se ejecute la consulta.
+
+Para solucionar este problema, ejecute esas consultas utilizando la clase
+Statement o, si debe utilizar la clase PreparedStatement o la clase
+CallableStatement, cree una tabla en la base de datos y elimine la tabla
+cuando ya no sea necesaria.
+
+
+12) RESTABLEZCA LOS PARÁMETROS DE SECUENCIA ANTES DE VOLVER A EJECUTAR UNA
+    INSTRUCCIÓN PREPARADA
+ 
+Al ejecutar una instrucción SQLServerPreparedStatement, es posible que se
+consuman valores de los parámetros java.io.InputStream y java.io.Reader
+establecidos con los siguientes métodos: 
+setAsciiStream, setBinaryStream, setCharacterStream, setNCharacterStream, 
+setBlob, setClob, setNClob o setObject. 
+
+Si desea volver a ejecutar la misma instrucción preparada y usar de nuevo las
+mismas secuencias InputStream o Reader, primero debe restablecer las
+secuencias usando el método java.io.InputStream.reset o el método
+java.io.Reader.reset.
+A continuación, debe establecer los valores de los parámetros afectados usando
+el método SQLServerPreparedStatement.set<Tipo> apropiado. 
+
+De lo contrario, se iniciará una excepción SQLServerException al volver a
+ejecutar la misma instrucción preparada. Se trata de un comportamiento
+esperado definido en las especificaciones de JDBC.
+ 
+
+13) EVITE USAR LA MISMA SECUENCIA PARA VARIOS PARÁMETROS AL EJECUTAR UNA
+ INSTRUCCIÓN PREPARADA
+ 
+Si varios parámetros usan la misma instrucción en el mismo objeto
+PreparedStatement, se iniciará una excepción SQLServerException.  Debe
+utilizar una secuencia diferente para cada parámetro.
+Se trata de un comportamiento esperado definido en las especificaciones de JDBC.
+
+
+14) EL MÉTODO Connection.nativeSQL NO DEVUELVE UNA INSTRUCCIÓN SQL NATIVA
+
+El método Connection.nativeSQL(java.lang.String sql) devuelve el valor String
+de la instrucción SQL del parámetro de entrada especificado. Esto ocurre
+porque el controlador no convierte la instrucción SQL especificada en la
+gramática Transact-SQL nativa de SQL Server. 
+
+
+15) TIEMPO DE ESPERA DE CONSULTA
+
+Si se llama al método Statement.setQueryTimeout(int seconds) con un argumento
+que no es cero, el controlador utilizará un subproceso extra al ejecutar la
+consulta. 
+Esto puede provocar que el controlador utilice muchos recursos si se ejecutan
+varias instrucciones con tiempos de espera de consulta al mismo tiempo.
+
