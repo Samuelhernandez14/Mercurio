@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Sincronizacion {
@@ -19,25 +22,22 @@ public class Sincronizacion {
     public static final int ESTADO_ERROR = 2;
 
     private int id;
-    private int idInicio;
-    private int idFin;
     private Date fechaHoraInicio;
     private Date fechaHoraFin;
     private int duracion;
     private int estado;
     private String descripcion;
     private int registrosConsultados;
-    private int registrosExitosos;
-    private int registrosError;
+    private int registrosActualizados;
+    private int registrosErrores;
 
     public Sincronizacion() {
-    }
-
-    public Sincronizacion(int idInicio, int idFin, String descripcion) {
-        this.idInicio = idInicio;
-        this.idFin = idFin;
         this.fechaHoraInicio = new Date();
         this.estado = ESTADO_EN_PROCESO;
+    }
+
+    public Sincronizacion(String descripcion) {
+        this();
         this.descripcion = descripcion;
     }
 
@@ -48,22 +48,6 @@ public class Sincronizacion {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdInicio() {
-        return idInicio;
-    }
-
-    public void setIdInicio(int idInicio) {
-        this.idInicio = idInicio;
-    }
-
-    public int getIdFin() {
-        return idFin;
-    }
-
-    public void setIdFin(int idFin) {
-        this.idFin = idFin;
     }
 
     public Date getFechaHoraInicio() {
@@ -90,6 +74,17 @@ public class Sincronizacion {
         this.duracion = duracion;
     }
 
+    public int getDuracionCalculado() {
+        if (fechaHoraInicio != null && fechaHoraFin != null) {
+            Duration duration = Duration.between(
+                fechaHoraInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
+                fechaHoraFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+            );
+            return (int) duration.getSeconds();
+        }
+        return 0;
+    }
+
     public int getEstado() {
         return estado;
     }
@@ -114,120 +109,85 @@ public class Sincronizacion {
         this.registrosConsultados = registrosConsultados;
     }
 
-    public int getRegistrosExitosos() {
-        return registrosExitosos;
+    public int getRegistrosActualizados() {
+        return registrosActualizados;
     }
 
-    public void setRegistrosExitosos(int registrosExitosos) {
-        this.registrosExitosos = registrosExitosos;
+    public void setRegistrosActualizados(int registrosActualizados) {
+        this.registrosActualizados = registrosActualizados;
     }
 
-    public int getRegistrosError() {
-        return registrosError;
+    public int getRegistrosErrores() {
+        return registrosErrores;
     }
 
-    public void setRegistrosError(int registrosError) {
-        this.registrosError = registrosError;
+    public void setRegistrosErrores(int registrosErrores) {
+        this.registrosErrores = registrosErrores;
     }
 
+    // Métodos de incremento
     public void incrementarConsultados() {
         this.registrosConsultados++;
     }
 
-    public void incrementarExitosos() {
-        this.registrosExitosos++;
+    public void incrementarActualizados() {
+        this.registrosActualizados++;
     }
 
-    public void incrementarError() {
-        this.registrosError++;
+    public void incrementarErrores() {
+        this.registrosErrores++;
     }
 
-    /**
-     * Consulta el último ID procesado exitosamente
-     */
-    public static Integer consultarUltimoIdProcesado(Connection conn) throws Exception {
+    // Métodos de BD
+    public static int crear(Sincronizacion obj, Connection conn) throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Integer ultimoId = null;
-        
-        try {
-            pstmt = conn.prepareStatement(
-                ContextManager.getInstance()
-                    .getQuery(RUTA_SQL + "sincronizacion_consultar_ultimo_id.sql")
-                    .toString()
-            );
-            rs = pstmt.executeQuery();
-            
-            if (rs.next()) {
-                ultimoId = rs.getInt("id_fin");
-            }
-        } finally {
-            if (rs != null) rs.close();
-            if (pstmt != null) pstmt.close();
-        }
-        
-        return ultimoId;
-    }
-
-    /**
-     * Crea un nuevo registro de sincronización
-     */
-    public static int crear(Sincronizacion obj, Connection conn) throws SQLException, Exception {
-        int idResp = 0;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        
         try {
             ParamsSQL params = new ParamsSQL();
-            params.setInt("id_inicio", obj.getIdInicio());
-            params.setInt("id_fin", obj.getIdFin());
             params.setDateTime("fecha_hora_inicio", obj.getFechaHoraInicio());
             params.setInt("estado", obj.getEstado());
             params.setString("descripcion", obj.getDescripcion());
             
             pstmt = conn.prepareStatement(
-                ContextManager.getInstance()
-                    .getQuery(RUTA_SQL + "sincronizacion_crear.sql", params)
-                    .toString(),
+                ContextManager.getInstance().getQuery(RUTA_SQL + "sincronizacion_crear.sql", params).toString(),
                 Statement.RETURN_GENERATED_KEYS
             );
             pstmt.execute();
-            
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                idResp = rs.getInt(1);
+                return rs.getInt(1);
             }
+            return 0;
+        } catch (Exception e) {
+            throw new SQLException(e);
         } finally {
             if (rs != null) rs.close();
             if (pstmt != null) pstmt.close();
         }
-        
-        return idResp;
     }
 
-    /**
-     * Finaliza una sincronización
-     */
-    public static void finalizar(Sincronizacion obj, Connection conn) throws SQLException, Exception {
+    public static void finalizar(Sincronizacion obj, Connection conn) throws SQLException {
         PreparedStatement pstmt = null;
-        
         try {
+            obj.setFechaHoraFin(new Date());
+            obj.setDuracion(obj.getDuracionCalculado());
+            
             ParamsSQL params = new ParamsSQL();
-            params.setDateTime("fecha_hora_fin", new Date());
+            params.setDateTime("fecha_hora_fin", obj.getFechaHoraFin());
             params.setInt("duracion", obj.getDuracion());
             params.setInt("estado", obj.getEstado());
             params.setString("descripcion", obj.getDescripcion());
             params.setInt("registros_consultados", obj.getRegistrosConsultados());
-            params.setInt("registros_exitosos", obj.getRegistrosExitosos());
-            params.setInt("registros_error", obj.getRegistrosError());
+            params.setInt("registros_actualizados", obj.getRegistrosActualizados());
+            params.setInt("registros_errores", obj.getRegistrosErrores());
             params.setInt("id_pre", obj.getId());
             
             pstmt = conn.prepareStatement(
-                ContextManager.getInstance()
-                    .getQuery(RUTA_SQL + "sincronizacion_finalizar.sql", params)
-                    .toString()
+                ContextManager.getInstance().getQuery(RUTA_SQL + "sincronizacion_finalizar.sql", params).toString()
             );
             pstmt.execute();
+        } catch (Exception e) {
+            throw new SQLException(e);
         } finally {
             if (pstmt != null) pstmt.close();
         }

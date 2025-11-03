@@ -26,14 +26,73 @@ public class PropApl {
     private Properties dbProps = null;
 
     private PropApl() {
-        InputStream is = getClass().getResourceAsStream("/com/saviasaludeps/siifa/config/apl.properties");
         dbProps = new Properties();
+        InputStream is = null;
+        
         try {
+            // Intenta varias rutas posibles
+            String[] rutasPosibles = {
+                "/com/saviasaludeps/siifa/config/apl.properties",
+                "/config/apl.properties",
+                "/apl.properties"
+            };
+            
+            for (String ruta : rutasPosibles) {
+                is = getClass().getResourceAsStream(ruta);
+                if (is != null) {
+                    System.out.println("✓ Archivo de propiedades encontrado en: " + ruta);
+                    break;
+                }
+            }
+            
+            if (is == null) {
+                System.err.println("✗ ERROR: No se encontró el archivo apl.properties");
+                System.err.println("Rutas buscadas:");
+                for (String ruta : rutasPosibles) {
+                    System.err.println("  - " + ruta);
+                }
+                System.err.println("\nVerifica que el archivo esté en:");
+                System.err.println("  src/main/resources/com/saviasaludeps/siifa/config/apl.properties");
+                System.err.println("  o en: src/main/resources/config/apl.properties");
+                System.err.println("  o en: src/main/resources/apl.properties");
+                
+                // Usar valores por defecto para poder continuar
+                cargarValoresPorDefecto();
+                return;
+            }
+            
             dbProps.load(is);
+            System.out.println("✓ Propiedades cargadas exitosamente");
+            
         } catch (IOException e) {
-            Log.getInstance().error("Carga de Propiedades", 
-                "No se puede leer el archivo de propiedades apl.properties", e);
+            System.err.println("✗ Error al cargar el archivo de propiedades: " + e.getMessage());
+            cargarValoresPorDefecto();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    // Ignorar
+                }
+            }
         }
+    }
+    
+    /**
+     * Carga valores por defecto si no se encuentra el archivo
+     */
+    private void cargarValoresPorDefecto() {
+        System.out.println("⚠ Usando valores por defecto...");
+        dbProps.setProperty(RUTA_LOGS, "logs/");
+        dbProps.setProperty(URL_REST_SIIFA, "https://siifa.sispropreprod.gov.co/siifacon/api/ReferenciaCums/ByIdCums");
+        dbProps.setProperty(URL_REST_SIIFA_TOKEN, "https://siifa.sispropreprod.gov.co/siifaseg/api/Auth/login");
+        dbProps.setProperty(SIIFA_USERNAME, "CC71790949");
+        dbProps.setProperty(SIIFA_PASSWORD, "Savia.2025@2");
+        dbProps.setProperty(ID_INICIO, "1");
+        dbProps.setProperty(ID_FIN, "10");
+        dbProps.setProperty(LOTE_SIZE, "100");
+        dbProps.setProperty(TIEMPO_ESPERA_PETICION, "100");
+        dbProps.setProperty(TOKEN_TIEMPO_VALIDEZ, "3600");
     }
 
     public static PropApl getInstance() {

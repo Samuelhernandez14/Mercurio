@@ -1,0 +1,12 @@
+nov 02, 2025 11:27:39 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Inicio Proceso SIIFA) Iniciando recuperación de referencias CUMS - MODO PRUEBA
+nov 02, 2025 11:27:41 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Token Renovado) Token obtenido exitosamente. Expira: 2025-11-02T12:27:41.654014100
+nov 02, 2025 11:27:46 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Fin Proceso SIIFA) Total procesados: 5 - Exitosos: 5 - No encontrados: 0 - Errores: 0
+nov 02, 2025 11:28:08 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Inicio Proceso SIIFA) Iniciando recuperación de referencias CUMS - MODO PRUEBA
+nov 02, 2025 11:28:10 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Token Renovado) Token obtenido exitosamente. Expira: 2025-11-02T12:28:10.266737200
+nov 02, 2025 11:28:14 A. M. com.saviasaludeps.siifa.generico.Log suceso
+INFO: (Fin Proceso SIIFA) Total procesados: 5 - Exitosos: 5 - No encontrados: 0 - Errores: 0
