@@ -13,7 +13,7 @@ public class RecuperacionSiifa {
     
     public static void procesamiento() {
         System.out.println("=".repeat(80));
-        System.out.println("INICIO PROCESO SIIFA - GUARDANDO EN BASE DE DATOS SQL SERVER");
+        System.out.println("INICIO PROCESO SIIFA - GUARDANDO EN BASE DE DATOS MYSQL");
         System.out.println("=".repeat(80));
         
         Log.getInstance().suceso("Inicio Proceso SIIFA", "Iniciando recuperación de referencias CUMS");
@@ -27,6 +27,8 @@ public class RecuperacionSiifa {
         System.out.println("  - ID Fin: " + idFin);
         System.out.println("  - Total a procesar: " + (idFin - idInicio + 1));
         System.out.println("  - Tiempo de espera entre peticiones: " + tiempoEspera + " ms");
+        System.out.println("  - Base de datos: " + PropApl.getInstance().get(PropApl.BD_MYSQL_NOMBRE));
+        System.out.println("  - Servidor: " + PropApl.getInstance().get(PropApl.BD_MYSQL_URL));
         System.out.println();
         
         int totalProcesados = 0;
@@ -39,10 +41,10 @@ public class RecuperacionSiifa {
         Connection conn = null;
         
         try {
-            // Obtener conexión a la base de datos
-            System.out.println("Conectando a SQL Server...");
+            // Obtener conexión a la base de datos MySQL
+            System.out.println("Conectando a MySQL...");
             conn = ConnectionManagerMySql.getInstance().getConnection();
-            System.out.println("✓ Conexión establecida\n");
+            System.out.println("✓ Conexión establecida a la base de datos MySQL\n");
             
             for (int i = idInicio; i <= idFin; i++) {
                 try {
@@ -65,18 +67,18 @@ public class RecuperacionSiifa {
                         System.out.println("  • Código ATC: " + referencia.getCodigoAtc());
                         System.out.println("  • Incluido PBS: " + referencia.getIncluidoPbs());
                         
-                        // Guardar en base de datos
-                        System.out.println("\n  Guardando en base de datos...");
+                        // Guardar en base de datos MySQL
+                        System.out.println("\n  Guardando en base de datos MySQL...");
                         int resultado = ReferenciaCumsDAO.crear(referencia, conn);
                         
                         if (resultado == 0) {
                             totalGuardadosDB++;
                             Log.getInstance().suceso("Registro Guardado", 
-                                "ID CUMS " + i + " guardado exitosamente");
+                                "ID CUMS " + i + " guardado exitosamente en MySQL");
                         } else {
                             totalErroresDB++;
                             Log.getInstance().error("Error BD", 
-                                "No se pudo guardar ID CUMS " + i, null);
+                                "No se pudo guardar ID CUMS " + i + " en MySQL", null);
                         }
                     } else {
                         totalNoEncontrados++;
@@ -91,7 +93,7 @@ public class RecuperacionSiifa {
                         System.out.println("RESUMEN PARCIAL:");
                         System.out.println("  Procesados: " + totalProcesados + "/" + (idFin - idInicio + 1));
                         System.out.println("  Consultados exitosos: " + totalExitosos);
-                        System.out.println("  Guardados en BD: " + totalGuardadosDB);
+                        System.out.println("  Guardados en BD MySQL: " + totalGuardadosDB);
                         System.out.println("  Errores BD: " + totalErroresDB);
                         System.out.println("  No encontrados: " + totalNoEncontrados);
                         System.out.println("  Errores consulta: " + totalErrores);
@@ -121,7 +123,7 @@ public class RecuperacionSiifa {
             System.out.println("  Total procesados: " + totalProcesados);
             System.out.println("  Consultados exitosos: " + totalExitosos + " (" + 
                 String.format("%.2f", (totalExitosos * 100.0 / totalProcesados)) + "%)");
-            System.out.println("  Guardados en BD: " + totalGuardadosDB + " (" + 
+            System.out.println("  Guardados en BD MySQL: " + totalGuardadosDB + " (" + 
                 String.format("%.2f", (totalGuardadosDB * 100.0 / totalProcesados)) + "%)");
             System.out.println("  Errores BD: " + totalErroresDB);
             System.out.println("  No encontrados: " + totalNoEncontrados + " (" + 
@@ -143,7 +145,7 @@ public class RecuperacionSiifa {
             if (conn != null) {
                 try {
                     conn.close();
-                    System.out.println("\n✓ Conexión a base de datos cerrada");
+                    System.out.println("\n✓ Conexión a base de datos MySQL cerrada");
                 } catch (Exception e) {
                     System.err.println("✗ Error cerrando conexión: " + e.getMessage());
                 }

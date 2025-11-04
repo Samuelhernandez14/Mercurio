@@ -66,3 +66,119 @@ java.lang.NullPointerException: Cannot invoke "com.saviasaludeps.siifa.generico.
 	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
 	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
 
+nov 04, 2025 10:46:40 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:40 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:40 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:41 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:41 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:41 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:42 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:42 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:42 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 10:46:43 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "java.io.InputStream.read()" because "in" is null
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read()" because "in" is null
+	at com.saviasaludeps.siifa.generico.ContextManager.getQuery(ContextManager.java:55)
+	at com.saviasaludeps.siifa.objetos.ReferenciaCumsDAO.crear(ReferenciaCumsDAO.java:27)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:72)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 11:13:07 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+java.lang.Exception: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+	at com.saviasaludeps.siifa.objetos.TokenManager.renovarToken(TokenManager.java:89)
+	at com.saviasaludeps.siifa.objetos.TokenManager.getToken(TokenManager.java:34)
+	at com.saviasaludeps.siifa.objetos.ConsumoREST.consultarReferenciaCums(ConsumoREST.java:20)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:54)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 11:23:14 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+java.lang.Exception: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+	at com.saviasaludeps.siifa.objetos.TokenManager.renovarToken(TokenManager.java:89)
+	at com.saviasaludeps.siifa.objetos.TokenManager.getToken(TokenManager.java:34)
+	at com.saviasaludeps.siifa.objetos.ConsumoREST.consultarReferenciaCums(ConsumoREST.java:20)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:54)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 11:24:14 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+java.lang.Exception: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+	at com.saviasaludeps.siifa.objetos.TokenManager.renovarToken(TokenManager.java:89)
+	at com.saviasaludeps.siifa.objetos.TokenManager.getToken(TokenManager.java:34)
+	at com.saviasaludeps.siifa.objetos.ConsumoREST.consultarReferenciaCums(ConsumoREST.java:20)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:54)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 11:35:32 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+java.lang.Exception: Error obteniendo token. Status: 400 Response: {"success":false,"token":null,"errors":["The request channel timed out attempting to send after 00:01:00. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout."]}
+	at com.saviasaludeps.siifa.objetos.TokenManager.renovarToken(TokenManager.java:89)
+	at com.saviasaludeps.siifa.objetos.TokenManager.getToken(TokenManager.java:34)
+	at com.saviasaludeps.siifa.objetos.ConsumoREST.consultarReferenciaCums(ConsumoREST.java:20)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:54)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
