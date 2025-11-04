@@ -15,12 +15,20 @@ public class PropApl {
     public static final String ID_FIN = "id_fin";
     public static final String LOTE_SIZE = "lote_size";
     public static final String TIEMPO_ESPERA_PETICION = "tiempo_espera_peticion";
-    public static final String TOKEN_TIEMPO_VALIDEZ = "token_tiempo_validez";
 
+    // Propiedades MySQL (mantener por compatibilidad)
     public static final String BD_MYSQL_USUARIO = "mysqlDbUser";
     public static final String BD_MYSQL_PASSWORD = "mysqlDbPassword";
     public static final String BD_MYSQL_NOMBRE = "mysqlDdName";
     public static final String BD_MYSQL_URL = "mysqlDbURL";
+
+    // Propiedades SQL Server
+    public static final String BD_SQLSERVER_USUARIO = "sqlServerDbUser";
+    public static final String BD_SQLSERVER_PASSWORD = "sqlServerDbPassword";
+    public static final String BD_SQLSERVER_NOMBRE = "sqlServerDbName";
+    public static final String BD_SQLSERVER_HOST = "sqlServerDbHost";
+    public static final String BD_SQLSERVER_PORT = "sqlServerDbPort";
+    public static final String BD_SQLSERVER_URL = "sqlServerDbURL";
 
     private static PropApl propAplInstance = null;
     private Properties dbProps = null;
@@ -30,10 +38,9 @@ public class PropApl {
         InputStream is = null;
         
         try {
-            // Intenta varias rutas posibles
             String[] rutasPosibles = {
-                "/com/saviasaludeps/siifa/config/apl.properties",
                 "/config/apl.properties",
+                "/com/saviasaludeps/siifa/config/apl.properties",
                 "/apl.properties"
             };
             
@@ -51,18 +58,19 @@ public class PropApl {
                 for (String ruta : rutasPosibles) {
                     System.err.println("  - " + ruta);
                 }
-                System.err.println("\nVerifica que el archivo esté en:");
-                System.err.println("  src/main/resources/com/saviasaludeps/siifa/config/apl.properties");
-                System.err.println("  o en: src/main/resources/config/apl.properties");
-                System.err.println("  o en: src/main/resources/apl.properties");
-                
-                // Usar valores por defecto para poder continuar
                 cargarValoresPorDefecto();
                 return;
             }
             
             dbProps.load(is);
             System.out.println("✓ Propiedades cargadas exitosamente");
+            
+            // Mostrar propiedades cargadas (sin mostrar passwords)
+            System.out.println("\nPropiedades configuradas:");
+            System.out.println("  - URL SIIFA: " + get(URL_REST_SIIFA));
+            System.out.println("  - Usuario SIIFA: " + get(SIIFA_USERNAME));
+            System.out.println("  - URL Base de Datos: " + get(BD_SQLSERVER_URL));
+            System.out.println("  - Ruta Logs: " + get(RUTA_LOGS));
             
         } catch (IOException e) {
             System.err.println("✗ Error al cargar el archivo de propiedades: " + e.getMessage());
@@ -78,9 +86,6 @@ public class PropApl {
         }
     }
     
-    /**
-     * Carga valores por defecto si no se encuentra el archivo
-     */
     private void cargarValoresPorDefecto() {
         System.out.println("⚠ Usando valores por defecto...");
         dbProps.setProperty(RUTA_LOGS, "logs/");
@@ -91,8 +96,16 @@ public class PropApl {
         dbProps.setProperty(ID_INICIO, "1");
         dbProps.setProperty(ID_FIN, "10");
         dbProps.setProperty(LOTE_SIZE, "100");
-        dbProps.setProperty(TIEMPO_ESPERA_PETICION, "100");
-        dbProps.setProperty(TOKEN_TIEMPO_VALIDEZ, "3600");
+        dbProps.setProperty(TIEMPO_ESPERA_PETICION, "500");
+        
+        // SQL Server por defecto
+        dbProps.setProperty(BD_SQLSERVER_URL, "jdbc:sqlserver://localhost:1433;databaseName=prueba1;integratedSecurity=true;trustServerCertificate=true");
+        
+        // MySQL por defecto (por compatibilidad)
+        dbProps.setProperty(BD_MYSQL_URL, "jdbc:mysql://localhost:3306");
+        dbProps.setProperty(BD_MYSQL_NOMBRE, "");
+        dbProps.setProperty(BD_MYSQL_USUARIO, "");
+        dbProps.setProperty(BD_MYSQL_PASSWORD, "");
     }
 
     public static PropApl getInstance() {

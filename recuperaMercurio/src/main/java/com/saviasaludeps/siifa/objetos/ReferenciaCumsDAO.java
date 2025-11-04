@@ -21,13 +21,18 @@ public class ReferenciaCumsDAO {
             params.setString("nombre", referencia.getNombre());
             params.setString("descripcion", referencia.getDescripcion());
             params.setString("codigo_atc", referencia.getCodigoAtc());
-            params.setBoolean("incluido_pbs", referencia.getIncluidoPbs());
+            params.setBoolean("incluido_pbs", referencia.getIncluidoPbs() != null ? referencia.getIncluidoPbs() : false);
             
-            pstm = conn.prepareStatement(ContextManager.getInstance()
-                    .getQuery(RUTA_SQL + "referencia_cums_crear.sql", params).toString());
+            String query = ContextManager.getInstance()
+                    .getQuery(RUTA_SQL + "referencia_cums_crear.sql", params).toString();
+            
+            pstm = conn.prepareStatement(query);
             pstm.execute();
+            
+            System.out.println("  ✓ Registro guardado en BD - ID CUMS: " + referencia.getIdCums());
             return 0;
         } catch (SQLException e) {
+            System.err.println("  ✗ Error guardando en BD - ID CUMS: " + referencia.getIdCums() + " - " + e.getMessage());
             Log.getInstance().error("Crear Referencia CUMS", e.getMessage(), e);
             return -1;
         } finally {

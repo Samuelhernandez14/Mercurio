@@ -29,11 +29,7 @@ public class ConnectionManagerMySql {
      */
     public static ConnectionManagerMySql getInstance() throws Exception/* throws SQLException*/ {
         if (instance == null) {
-            instance = new ConnectionManagerMySql();
-            url = PropApl.getInstance().get(PropApl.BD_MYSQL_URL);
-            name = PropApl.getInstance().get(PropApl.BD_MYSQL_NOMBRE);
-            usr = PropApl.getInstance().get(PropApl.BD_MYSQL_USUARIO);
-            pass = PropApl.getInstance().get(PropApl.BD_MYSQL_PASSWORD);
+
         }
         return instance;
     }

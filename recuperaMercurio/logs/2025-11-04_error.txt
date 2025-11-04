@@ -1,0 +1,68 @@
+nov 04, 2025 7:38:51 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: No se pudo realizar la conexión TCP/IP al host localhost, puerto 1433. Error: "Connection refused: getsockopt. Verifique las propiedades de conexión, compruebe que hay una instancia de SQL Server ejecutándose en el host y aceptando las conexiones TCP/IP en el puerto y compruebe que no hay ningún firewall bloqueando las conexiones TCP en el puerto.".
+com.microsoft.sqlserver.jdbc.SQLServerException: No se pudo realizar la conexión TCP/IP al host localhost, puerto 1433. Error: "Connection refused: getsockopt. Verifique las propiedades de conexión, compruebe que hay una instancia de SQL Server ejecutándose en el host y aceptando las conexiones TCP/IP en el puerto y compruebe que no hay ningún firewall bloqueando las conexiones TCP en el puerto.".
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:231)
+	at com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:282)
+	at com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2578)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:719)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:3523)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3172)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3014)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1836)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:1246)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at com.saviasaludeps.siifa.generico.ConnectionManagerSqlServer.getConnection(ConnectionManagerSqlServer.java:48)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 9:16:04 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: No se pudo realizar la conexión TCP/IP al host localhost, puerto 1433. Error: "Connection refused: getsockopt. Verifique las propiedades de conexión, compruebe que hay una instancia de SQL Server ejecutándose en el host y aceptando las conexiones TCP/IP en el puerto y compruebe que no hay ningún firewall bloqueando las conexiones TCP en el puerto.".
+com.microsoft.sqlserver.jdbc.SQLServerException: No se pudo realizar la conexión TCP/IP al host localhost, puerto 1433. Error: "Connection refused: getsockopt. Verifique las propiedades de conexión, compruebe que hay una instancia de SQL Server ejecutándose en el host y aceptando las conexiones TCP/IP en el puerto y compruebe que no hay ningún firewall bloqueando las conexiones TCP en el puerto.".
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:231)
+	at com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:282)
+	at com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2578)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:719)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:3523)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3172)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3014)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1836)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:1246)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at com.saviasaludeps.siifa.generico.ConnectionManagerSqlServer.getConnection(ConnectionManagerSqlServer.java:48)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 9:22:59 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: La cadena de conexión contiene un nombre o valor mal formado.
+com.microsoft.sqlserver.jdbc.SQLServerException: La cadena de conexión contiene un nombre o valor mal formado.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:231)
+	at com.microsoft.sqlserver.jdbc.Util.parseUrl(Util.java:410)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.parseAndMergeProperties(SQLServerDriver.java:1258)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:1243)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at com.saviasaludeps.siifa.generico.ConnectionManagerSqlServer.getConnection(ConnectionManagerSqlServer.java:48)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 9:24:33 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: La cadena de conexión contiene un nombre o valor mal formado.
+com.microsoft.sqlserver.jdbc.SQLServerException: La cadena de conexión contiene un nombre o valor mal formado.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:231)
+	at com.microsoft.sqlserver.jdbc.Util.parseUrl(Util.java:410)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.parseAndMergeProperties(SQLServerDriver.java:1258)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:1243)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at com.saviasaludeps.siifa.generico.ConnectionManagerSqlServer.getConnection(ConnectionManagerSqlServer.java:48)
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
+nov 04, 2025 9:53:43 A. M. com.saviasaludeps.siifa.generico.Log error
+WARNING: Cannot invoke "com.saviasaludeps.siifa.generico.ConnectionManagerMySql.getConnection()" because the return value of "com.saviasaludeps.siifa.generico.ConnectionManagerMySql.getInstance()" is null
+java.lang.NullPointerException: Cannot invoke "com.saviasaludeps.siifa.generico.ConnectionManagerMySql.getConnection()" because the return value of "com.saviasaludeps.siifa.generico.ConnectionManagerMySql.getInstance()" is null
+	at com.saviasaludeps.siifa.proceso.RecuperacionSiifa.procesamiento(RecuperacionSiifa.java:44)
+	at com.saviasaludeps.siifa.inicio.Inicio.main(Inicio.java:8)
+
